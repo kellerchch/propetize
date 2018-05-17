@@ -37,7 +37,7 @@ class Search extends Component {
         const styles = this.styles()
         return (
            <div className="wrapper">
-            <div className="itemContainer">
+            <div >
                     <h1>Find Stuff to Borrow</h1>
                         {/* <div style={styles.formItem}>
                         <input onChange={this.state.title} placeholder="title" />

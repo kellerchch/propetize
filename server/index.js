@@ -107,9 +107,8 @@ app.get("/auth/me", (req, res) => {
 app.get("/api/stuff", isAuthenticated, StuffController.get);
 app.get("/api/search", StuffController.search);
 app.get("/api/favorites", isAuthenticated, StuffController.favorites);
-app.get("/api/borrowed", isAuthenticated, StuffController.borrowed);
-
 app.post("/api/borrow", isAuthenticated, StuffController.borrow);
+app.get("/api/borrowed", isAuthenticated, StuffController.borrowed);
 app.post("/api/stuff", isAuthenticated, StuffController.create);
 app.post('/api/favorite', isAuthenticated, StuffController.favorite);
 app.delete('/api/stuff/', StuffController.delete);

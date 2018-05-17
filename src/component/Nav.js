@@ -7,25 +7,24 @@ import '../App.css';
 
 export default function Nav() {
     return (
-        <div>
-            <Link to="/">
-                <div className="nav" > Home </div>
+        <div className="navbar navbar-light">
+            <Link to="/" className="nav navbar-nav">
+                <div className="nav-item" > Home </div>
             </Link>
-            <Link to="/Works">
-                <div className="nav"> How This Works</div>
+            <Link to="/Works"className="nav navbar-nav">
+                <div className="nav-item" > How This Works</div>
             </Link>
-            <Link to="/Stuff">
-                <div className="nav"> My Account</div>
+            <Link to="/Stuff"className="nav navbar-nav">
+                <div className="nav-item" > My Account</div>
             </Link>
-            <Link to="/Search">
-                <div className="nav"> Search </div>
+            <Link to="/Search"className="nav navbar-nav">
+                <div className="nav-item" > Search </div>
             </Link>
-            <Link to="/About">
-                <div className="nav"> About Us </div>
+            <Link to="/About"className="nav navbar-nav">
+                <div className="nav-item" > About Us </div>
             </Link>
-            <Link to="/Login">
-                <div className="nav"> Login </div>
-            </Link>
+            <a className="nav navbar-nav" href="http://localhost:3002/auth">
+                <button className="nav-item" > Sign In </button></a>
         </div> 
     )
 }

@@ -126,3 +126,14 @@
   align-items: center;
   margin-right: 20px;
 }
+
+.btn {
+    margin-left: 5px;
+}
+
+.modal-container {
+  position: relative;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+}

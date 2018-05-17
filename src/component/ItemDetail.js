@@ -11,11 +11,11 @@ class ItemDetail extends Component {
     render() {
         const id = parseInt(this.props.match.params.id);
         const itemSelected = this.props.stuff.data.find((item) => item.id == id )
-        console.log(11111, 'hihi', itemSelected)
+
         if (itemSelected) {
             return (
-                <div>
-                    Item Stuff
+                <div className="PageTitle">
+                    Item Detail
                     <Item item={itemSelected} key={id} />    
                   </div>
             )
@@ -32,7 +32,6 @@ class ItemDetail extends Component {
 
 
 function mapStateToProps(state) {
-    console.log('state', state)
     const { stuff } = state;
     return { stuff }
   }

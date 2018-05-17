@@ -85,9 +85,20 @@ module.exports = {
     },
 
     borrow: (req, res) => {
+        console.log('getting to the reducer', req.body)
+
         const db = req.app.get("db");
         const user_id = req.user.id;
-        db.borrow({user_id: req.body.user_id, stuff_id: req.body.item_id}).then(results => {
+        const duration = req.body.date_end - req.body.date_start
+        db.borrow({
+            user_id_taker: req.body.user_id_taker.id, 
+            stuff_id: req.body.stuff_id, 
+            user_id_giver: req.body.user_id_giver, 
+            date_start: req.body.date_start, 
+            date_end: req.body.date_end,
+            borrow_request: req.body.borrow_request,
+            duration: duration
+        }).then(results => {
             res.send(results);
         });
     }

@@ -105,11 +105,21 @@ export function addFavorite(id, user) {
   }
 }
 
-export function borrow(id, user) {
-  let body = {user_id: user.id, item_id: id }
+export function borrow(id, user, values, stuff, callback) {
+  let body = {
+    user_id_taker: user, 
+    date_start: values.date_start,
+    date_end: values.date_end,
+    borrow_request: values.borrow_request, 
+    stuff_id: stuff.id, 
+    user_id_giver: stuff.user_id }
+
+  console.log('borrow-reducer', body)
   return {
     type: BORROW_ITEM,
     payload: axios.post(`/api/borrow`, body)
+    .then(() => callback())
 
   }
 }
+

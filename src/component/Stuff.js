@@ -61,18 +61,21 @@ class Stuff extends Component {
     console.log('data',this.props.stuff.data)
 
     return (
+
+
       this.props.user.id ?
         <div className="wrapper">
+        
           <div className="one">
             <div className="flexHeading">
-              <h1>My Stuff</h1>
+              <h2>My Stuff</h2>
               <div onClick={this.toggleAddStuff}><button> Add an Item </button> 
               </div>
             </div>
 
               {this.state.addStuff &&
 
-           <div >
+           <div className="one">
               <input onChange={this.handleTitleInput} placeholder="title" />
               <input onChange={this.handleDescriptionInput} placeholder="description" />
               <input onChange={this.handlePhotoInput} placeholder="photo URL" />
@@ -89,7 +92,7 @@ class Stuff extends Component {
           </div>
           
           <div className="two">
-            <h1>My Favorites</h1>
+            <h2>My Favorites</h2>
               {/* Formerly the Title: My items */}
               {this.props.stuff.myFavorites.sort((a, b) => a.id - b.id).map(item => {
                 console.log('item', item)
@@ -99,7 +102,7 @@ class Stuff extends Component {
           </div>
 
           <div className="three">
-            <h1>Stuff I Am Borrowing</h1>
+            <h2>My Exchange Requests</h2>
               {this.props.stuff.getBorrowed.sort((a, b) => a.id - b.id).map(item => {
                 var key = item.id + '_borrowed'
                 return <Item item={item} key={key} />
@@ -112,7 +115,7 @@ class Stuff extends Component {
         </div>
       : 
         <div>
-          <a href="http://localhost:3002/auth"><button>Login to participate</button></a>
+          <a href="http://localhost:3002/auth"><button>Make sure you are logged in to see your stuff.</button></a>
         </div>
     )
   }

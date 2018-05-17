@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import '../App.css'
+import ReactModal from 'react-modal'
 import { deleteItem, editItem, getFavorites, addFavorite, borrow } from '../reducers/stuff'
-
+import ReactBootstrap, { Popover, Tooltip, Button, OverlayTrigger, Modal } from 'react-bootstrap'
 
 class Item extends Component {
   constructor(props) {
@@ -15,7 +16,8 @@ class Item extends Component {
       title: props.item.title,
       description: props.item.description,      
       photo_url: props.item.photo_url,
-      stuff_value: props.item.stuff_value
+      stuff_value: props.item.stuff_value,
+      show: false
     }
   }
   toggleEdit = () => {
@@ -58,12 +60,20 @@ checkFavorites = (id) => {
   if (index === -1) {
     this.props.addFavorite(id, this.props.user)
   }
-  alert('You have already favorited this.')
+  alert('This has been added to your favorites.')
 }
   
   // saveChanges = () => {
   //   this.props.editItem(this.state)
   // }
+
+  handleClose = () => {
+    this.setState({ show: false });
+  }
+
+  handleShow = () => {
+    this.setState({ show: true });
+  }
 
   render() {
     const { title, description, photo_url, id, stuff_value } = this.props.item
@@ -106,9 +116,95 @@ checkFavorites = (id) => {
                   </Link>
 
                   <div>
-                    <button onClick={this.toggleEdit}>Edit</button>
-                    <button onClick={() => this.checkFavorites(id)}>Favorite</button>
-                    <button onClick={this.toggleBorrow}>Borrow This</button>
+                    <button className="btn btn-secondary" onClick={this.toggleEdit}>Edit</button>
+                    <button className="btn btn-success"onClick={() => this.checkFavorites(id)}>Favorite</button>
+                  <Link to={`/BorrowRequest/Item/${id}`} className="btn btn-primary">Exchange This
+                  </Link>
+                  
+                          {/* <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
+                        Launch demo modal
+                      </Button>
+                          <Modal show={this.state.show} onHide={this.handleClose}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>Modal heading</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                          <h4>Text in a modal</h4>
+                          <p>
+                            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                          </p>
+              
+                          <h4>Popover in a modal</h4>
+                          <p>
+                            there is a{' '}
+                            <OverlayTrigger overlay={Popover}>
+                              <a href="#popover">popover</a>
+                            </OverlayTrigger>{' '}
+                            here
+                          </p>
+              
+                          <h4>Tooltips in a modal</h4>
+                          <p>
+                            there is a{' '}
+                            <OverlayTrigger overlay={Tooltip}>
+                              <a href="#tooltip">tooltip</a>
+                            </OverlayTrigger>{' '}
+                            here
+                          </p>
+              
+                          <hr />
+              
+                          <h4>Overflowing text to show scroll behavior</h4>
+                          <p>
+                            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+                            ac consectetur ac, vestibulum at eros.
+                          </p>
+                          <p>
+                            Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                            et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+                            auctor.
+                          </p>
+                          <p>
+                            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
+                            cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
+                            dui. Donec ullamcorper nulla non metus auctor fringilla.
+                          </p>
+                          <p>
+                            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+                            ac consectetur ac, vestibulum at eros.
+                          </p>
+                          <p>
+                            Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                            et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+                            auctor.
+                          </p>
+                          <p>
+                            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
+                            cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
+                            dui. Donec ullamcorper nulla non metus auctor fringilla.
+                          </p>
+                          <p>
+                            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+                            ac consectetur ac, vestibulum at eros.
+                          </p>
+                          <p>
+                            Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                            et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+                            auctor.
+                          </p>
+                          <p>
+                            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
+                            cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
+                            dui. Donec ullamcorper nulla non metus auctor fringilla.
+                          </p>
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button onClick={this.handleClose}>Close</Button>
+                        </Modal.Footer>
+                      </Modal> */}
                   </div>
                 </div>
               </div>

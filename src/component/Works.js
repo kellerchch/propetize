@@ -5,7 +5,7 @@ class Works extends Component {
     render() {
         return (
             <div className="PageTitle">
-                Works - eti
+               How This Works
             </div>
         )
     }
