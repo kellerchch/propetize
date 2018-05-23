@@ -10,6 +10,8 @@ const StuffController = require("./controllers/StuffController");
 
 const isAuthenticated = require("../middleware/isAuthenticated");
 
+const path = require('path');
+
 require("dotenv").config();
 
 //set up an express server.
@@ -22,6 +24,7 @@ massive(process.env.CONNECTION_STRING).then(db => {
 
   //body
 
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(bodyParser.json());
 app.use(cors());
 app.use(
@@ -91,8 +94,8 @@ app.get("/auth", passport.authenticate("auth0"));
 app.get(
   "/auth/callback",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/Stuff",
-    failureRedirect: "http://localhost:3000/#/Login"
+    successRedirect: "/Stuff",
+    failureRedirect: "/Login"
   })
 );
 
@@ -119,7 +122,9 @@ app.put('/api/stuff/:id', isAuthenticated, StuffController.edit);
 // app.delete('/api/locations/:location_id/categories/:category_id', CategoriesController.delete);
 
 
-
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 app.listen(port, () => {
     console.log("listening on port", port);

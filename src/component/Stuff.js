@@ -115,7 +115,7 @@ class Stuff extends Component {
         </div>
       : 
         <div>
-          <a href="http://localhost:3002/auth"><button>Make sure you are logged in to see your stuff.</button></a>
+          <a href="{process.env.REACT_APP_LOGIN}"><button>Make sure you are logged in to see your stuff.</button></a>
         </div>
     )
   }

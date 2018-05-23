@@ -23,7 +23,7 @@ export default function Nav() {
             <Link to="/About"className="nav navbar-nav">
                 <div className="nav-item" > About Us </div>
             </Link>
-            <a className="nav navbar-nav" href="http://localhost:3002/auth">
+            <a className="nav navbar-nav" href={process.env.REACT_APP_LOGIN}>
                 <button className="nav-item" > Sign In </button></a>
         </div> 
     )
